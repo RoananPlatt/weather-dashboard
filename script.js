@@ -1,6 +1,4 @@
-//store the searched city
 var city = "";
-// variable declaration
 var citySearch = $("#city-search");
 var searchForButton = $("#search-for-button");
 var clearHistoryButton = $("#clear-history-button");
@@ -10,27 +8,21 @@ var currentHumidityMeasurement = $("#current-humidity");
 var currentWindSpeed = $("#current-wind-speed");
 var uvIndex = $("current-uv-index");
 var searchCity = [];
-// search city - see if it exists in the storage
-//The FINDC function searches string for the first occurrence of the specified characters, and returns the position of the first character found. If no characters are found in string, then FINDC returns a value of 0.
-//https://www.w3schools.com/jsref/jsref_find.asp
+
+
 function find(c) {
     for (var i = 0; i < sCity.length; i++) {
         if (c.toUpperCase() === sCity[i]) {
             return -1;
         }
     }
-    //https://stackoverflow.com/questions/8282802/what-do-return-1-1-and-0-mean-in-this-javascript-code/8282827
     return 1;
 }
 
+//this is the key for the api
 
-//the API key
 var APIKey = "993e66d0b0d5090af76f55db0856f1ab";
-// Display current & future weather after getting the city form input text box.
-// WHEN I search for a city
-// THEN I am presented with current and future conditions
-// for that city and that city is added to the search history
-//see the project requirements file
+
 function displayWeather(event) {
     event.preventDefault();
     if (citySearch.val().trim() !== "") {
@@ -38,9 +30,9 @@ function displayWeather(event) {
         currentWeather(city);
     }
 }
-// AJAX call
+
 function currentWeather(city) {
-    // get data from server side
+    //server side data
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
     $.ajax({
         url: queryURL,
