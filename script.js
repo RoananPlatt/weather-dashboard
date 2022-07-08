@@ -47,18 +47,15 @@ function currentWeather(city) {
         $(currentLocationOrCity).html(response.name + "(" + date + ")" + "<img src=" + iconurl + ">");
 
         var tempFahrenheit  = (response.main.temp - 273.15) * 1.80 + 32;
+
         $(currentTemperature).html((tempFahrenheit ).toFixed(2) + "&#8457");
-        // Display the Humidity
         $(currentHumidityMeasurement).html(response.main.humidity + "%");
-        //Display Wind speed and convert to MPH
+
         var ws = response.wind.speed;
         var currentWindSpeed = (ws * 2.237).toFixed(1);
-        $(currentWSpeed).html(currentWindSpeed + "MPH");
-        //  var windsmph = (ws * 2.237).toFixed(1);
-        //  $(currentWSpeed).html(windsmph + "MPH");
 
-        // Show UVIndex.
-        //
+        $(currentWSpeed).html(currentWindSpeed + "MPH");
+
         UVIndex(response.coord.lon, response.coord.lat);
         forecast(response.id);
         if (response.cod == 200) {
@@ -80,15 +77,10 @@ function currentWeather(city) {
 
     });
 }
-// WHEN I view the UV index
-// THEN I am presented with a color that indicates whether the conditions are 
-// favorable, moderate, or severe
-//see the project requirements file
-// Function returns the UVI index response
+
+
 function UVIndex(ln, lt) {
-    //lets build the url for uvindex
     var uvqURL = "https://api.openweathermap.org/data/2.5/uvi?appid=" + APIKey + "&lat=" + lt + "&lon=" + ln;
-    //https://www.w3schools.com/js/js_ajax_intro.asp
     $.ajax({
         url: uvqURL,
         method: "GET"
@@ -144,10 +136,8 @@ function invokePastSearch(event) {
         city = liEl.textContent.trim();
         currentWeather(city);
     }
-
 }
 
-// render function
 function loadLastCity() {
     $("ul").empty();
     var sCity = JSON.parse(localStorage.getItem("cityname"));
@@ -159,23 +149,20 @@ function loadLastCity() {
         city = sCity[i - 1];
         currentWeather(city);
     }
-
 }
-//Clear search history from page
+
+
+
 function clearHistory(event) {
     event.preventDefault();
     sCity = [];
     localStorage.removeItem("cityname");
     document.location.reload();
-
 }
-//click handlers
+
+
+
 $("#search-for-button").on("click", displayWeather);
 $(document).on("click", invokePastSearch);
 $(window).on("load", loadLastCity);
 $("#clear-history").on("click", clearHistory);
-
-
-//Resources and References 
-//https://getbootstrap.com/ Bootstrap
-//https://getbootstrap.com/docs/5.1/getting-started/introduction/
