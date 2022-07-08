@@ -41,10 +41,7 @@ This project is a weather dashboard app with search functionality to find curren
       </ul>
     </li>
     <li><a href="#usage">Usage</a></li>
-    <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -97,5 +94,3 @@ SOFTWARE.
 
 * [Bootstrap](https://getbootstrap.com/)
 * [Open Weather API](https://sequelize.org/)
-
-
