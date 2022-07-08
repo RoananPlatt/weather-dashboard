@@ -5,7 +5,7 @@ var clearHistoryButton = $("#clear-history-button");
 var currentLocationOrCity = $("#current-location");
 var currentTemperature = $("#current-temperature");
 var currentHumidityMeasurement = $("#current-humidity");
-var currentWindSpeed = $("#current-wind-speed");
+var currentWSpeed = $("#current-wind-speed");
 var uvIndex = $("current-uv-index");
 var searchCity = [];
 
@@ -19,7 +19,6 @@ function find(c) {
     return 1;
 }
 
-//this is the key for the api
 
 var APIKey = "993e66d0b0d5090af76f55db0856f1ab";
 
@@ -32,7 +31,8 @@ function displayWeather(event) {
 }
 
 function currentWeather(city) {
-    //server side data
+
+
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&APPID=" + APIKey;
     $.ajax({
         url: queryURL,
@@ -85,7 +85,7 @@ function UVIndex(ln, lt) {
         url: uvqURL,
         method: "GET"
     }).then(function (response) {
-        $(currentUvindex).html(response.value);
+        $(uvIndex).html(response.value);
     });
 }
 
