@@ -38,22 +38,13 @@ function currentWeather(city) {
         url: queryURL,
         method: "GET",
     }).then(function (response) {
-        // WHEN I view current weather conditions
-        // for that city
-        // THEN I am presented with the city name, the date, an icon representation of weather conditions, 
-        // the temperature, the humidity, the wind speed, and the UV index
-        // parse response - display current weather - include City name, Date and weather icon. 
-        //see the project requirements file
         console.log(response);
-        //Data object from server side Api for icon property.
+
         var weathericon = response.weather[0].icon;
         var iconurl = "https://openweathermap.org/img/wn/" + weathericon + "@2x.png";
-        // The date format method  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date
         var date = new Date(response.dt * 1000).toLocaleDateString();
-        //parse the response for name of city and concanatig the date and icon.
+
         $(currentLocationOrCity).html(response.name + "(" + date + ")" + "<img src=" + iconurl + ">");
-        // parse response -display current temperature
-        // Change temp to fahrenheit
 
         var tempFahrenheit  = (response.main.temp - 273.15) * 1.80 + 32;
         $(currentTemperature).html((tempFahrenheit ).toFixed(2) + "&#8457");
